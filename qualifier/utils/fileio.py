@@ -30,17 +30,17 @@ def load_csv(csvpath):
     return data
 
 def save_csv(csvpath, data, header=None):
-    """ Saves teh CSV file from path provided.
-    
+    """ Saves the CSV file from path provided.
+
     Args:
         csvpath (Path): The CSV file path.
         data (lists of lists): A list of the rows fo data for the CSV file.
         header (list): An optional header for the CSV
 
-    """ 
+    """
     with open(csvpath, "w", newline="") as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=",")
         if header:
             csvwriter.write(header)
         csvwriter.writerows(data)
-    
+
