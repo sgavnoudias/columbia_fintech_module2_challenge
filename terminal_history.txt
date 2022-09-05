@@ -1,0 +1,94 @@
+  159  git clone git@github.com:sgavnoudias/columbia_fintech_module2_challenge.git
+  160  cd columbia_fintech_module2_challenge/
+  161  ls
+  162  less README.md
+  163  ls
+  ........
+  181  git log
+  182  git status
+  183  git add .
+  184  git status
+  ........
+  186  git commit -m "Initial commit of course provided Starter_Code"
+  187  git log
+  188  git push
+  189  git log
+  190  git pull
+  191  git log
+  192  ls
+  ........
+  195  python app.py
+  ........
+
+  203  python app.py
+  204  python app.py
+  205  python app.py
+  206  python app.py
+  207  python app.py
+  208  less data
+  209  ls data
+  210  less data/tmp.csv
+  211  less data/tmp.csv
+  212  rm data/tmp.csv
+  213  less data/tmp.csv
+  214  less data/tmp.csv
+  ........
+  261  git status
+  262  git add -u
+  263  git log
+  264  git status
+  ........
+  266  git commit -m "Implementation of business requirement logic (temp removed CLI interface to quickly test biz logic)"
+  267  git log
+  268  git push
+  269  git log
+  270  ls
+  271  python app.py
+  272  clear;python app.py
+  273  clear;python app.py
+  274  clear;python app.py
+  275  clear;python app.py
+  276  clear;python app.py
+  277  less data/tmp2.csv
+  278  less data/tmp2.csv
+  279  clear;python app.py
+  280  clear;python app.py
+  281  clear;python app.py
+  282  pwd
+  ........
+  286  clear;python app.py
+  287  clear;python app.py
+  288  clear;python app.py
+  289  clear;python app.py
+  290  less data/qualifying_loans.csv
+  291  git log
+  292  git status
+  293  git add data/qualifying_loans.csv
+  294  git add app.py
+  295  git status
+  296  git commit -m "Added CLI interface to prompt users for loan info"
+  297  git push
+  298  git log
+  301  ls
+  302  git status
+  303  git add qualifier/utils/fileio.py
+  304  git status
+  305  git commit -m "Fixed typo in docstrings save_cvs funcion"
+  306  git push
+  307  ls
+  ........
+  309  python --version
+  310  clear;python app.py
+  311  clear;python app.py
+  312  git status
+  313  git add README.md
+  314  git log
+  315  git status
+  316  git commit -m "Add README.md file"
+  317  git push
+  318  git status
+  319  git diff README.md
+  320  git add README.md
+  321  git commit -m "Remove default commented text from README.md file"
+  322  git push
+  323  history > terminal_history.txt
