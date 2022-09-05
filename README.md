@@ -8,8 +8,6 @@ Features:
 
 ## Technologies
 
-Describe the technologies required to use your project such as programming languages, libraries, frameworks, and operating systems. Be sure to include the specific versions of any critical dependencies that you have used in the stable version of your project.
-
 This project leverages python 3.9 with the following packages:
 * [fire](https://github.com/google/python-fire) - For the command line interface, help page, and entry-point.
 * [questionary](https://github.com/tmbo/questionary) - For interactive user prompts and dialogs
