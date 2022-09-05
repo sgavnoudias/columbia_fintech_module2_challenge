@@ -124,10 +124,10 @@ def save_qualifying_loans(qualifying_loans):
 
          # Business requirement:
          #   Given that I have a list of qualifying loans, when I’m prompted to save the results, then I should be able to opt out of saving the file.
-         should_save_qualifying_loans = questionary.text("Would you like to save the qualifying loans to a .csv file [Yes|No]?").ask()
+         should_save_qualifying_loans = questionary.confirm("Would you like to save the qualifying loans to a .csv file?").ask()
 
-         # Chek for a valid user "Yes" response (different forms of upper/lower-case supported)
-         if ((should_save_qualifying_loans == "yes") or (should_save_qualifying_loans == "Yes") or (should_save_qualifying_loans == "YES")):
+         # Chek if user would like to save to csv file (should_save_qualifying_loans = True)
+         if (should_save_qualifying_loans == True):
             is_got_valid_cli_response = True
 
             # Business requirement:
@@ -154,13 +154,9 @@ def save_qualifying_loans(qualifying_loans):
                #     Given that I’m using the loan qualifier CLI, when I choose to save the loans, then the tool should save the results as a CSV file.
                save_csv(csvpath, qualifying_loans)
 
-         elif ((should_save_qualifying_loans == "no") or (should_save_qualifying_loans == "No") or (should_save_qualifying_loans == "NO")):
+         else:
             print("OK, will not save qualifying loan results to csv file.  Exiting!")
             is_got_valid_cli_response = True
-
-         else:
-            print("Did not understand your response, please try again!")
-            # Will return to top of while loop since the default is_got_valid_cli_response is still False
 
       else:
          # Business requirement:
