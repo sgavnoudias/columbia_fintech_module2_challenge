@@ -11,7 +11,11 @@ import fire
 import questionary
 from pathlib import Path
 
-from qualifier.utils.fileio import load_csv
+# Import the functions from the utils library module to load and save csv files
+from qualifier.utils.fileio import (
+    load_csv,
+    save_csv
+)
 
 from qualifier.utils.calculators import (
     calculate_monthly_debt_ratio,
@@ -31,10 +35,16 @@ def load_bank_data():
         The bank data from the data rate sheet CSV file.
     """
 
-    csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):").ask()
-    csvpath = Path(csvpath)
-    if not csvpath.exists():
-        sys.exit(f"Oops! Can't find this path: {csvpath}")
+    # TEMP: Uncomment following ###
+    ###csvpath = questionary.text("Enter a file path to a rate-sheet (.csv):").ask()
+    ###csvpath = Path(csvpath)
+    ###if not csvpath.exists():
+    ###    sys.exit(f"Oops! Can't find this path: {csvpath}")
+
+    # TEMP: Delete following temporary code
+    #---------------------------------------
+    csvpath = "./data/daily_rate_sheet.csv"
+    #---------------------------------------
 
     return load_csv(csvpath)
 
@@ -46,18 +56,27 @@ def get_applicant_info():
         Returns the applicant's financial information.
     """
 
-    credit_score = questionary.text("What's your credit score?").ask()
-    debt = questionary.text("What's your current amount of monthly debt?").ask()
-    income = questionary.text("What's your total monthly income?").ask()
-    loan_amount = questionary.text("What's your desired loan amount?").ask()
-    home_value = questionary.text("What's your home value?").ask()
+    # TEMP: Uncomment following ###
+    ###credit_score = questionary.text("What's your credit score?").ask()
+    ###debt = questionary.text("What's your current amount of monthly debt?").ask()
+    ###income = questionary.text("What's your total monthly income?").ask()
+    ###loan_amount = questionary.text("What's your desired loan amount?").ask()
+    ###home_value = questionary.text("What's your home value?").ask()
 
-    credit_score = int(credit_score)
-    debt = float(debt)
-    income = float(income)
-    loan_amount = float(loan_amount)
-    home_value = float(home_value)
-
+    ###credit_score = int(credit_score)
+    ###debt = float(debt)
+    ###income = float(income)
+    ###loan_amount = float(loan_amount)
+    ###home_value = float(home_value)
+    
+    # TEMP: Delete following temporary code
+    #---------------------------------------
+    credit_score = 750
+    debt = 5000
+    income = 20000
+    loan_amount = 100000
+    home_value = 210000
+    #---------------------------------------
     return credit_score, debt, income, loan_amount, home_value
 
 
@@ -108,9 +127,52 @@ def save_qualifying_loans(qualifying_loans):
     Args:
         qualifying_loans (list of lists): The qualifying bank loans.
     """
-    # @TODO: Complete the usability dialog for savings the CSV Files.
-    # YOUR CODE HERE!
 
+    is_got_valid_cli_response = False  # A boolean to confirm a valid response from the user (will be set to True when response from user is valid)
+    while (not is_got_valid_cli_response):
+
+        # Business requirement: 
+        #   Given that I have a list of qualifying loans, when I’m prompted to save the results, then I should be able to opt out of saving the file.
+        should_save_qualifying_loans = questionary.text("Would you like to save the qualifying loans to a .csv file [Yes|No]?").ask()
+
+        if (len(qualifying_loans) > 0):
+
+            if ((should_save_qualifying_loans == "yes") or (should_save_qualifying_loans == "Yes") or (should_save_qualifying_loans == "YES")):
+                is_got_valid_cli_response = True
+
+                # Business requirement: 
+                #   Given that I have a list of qualifying loans, when I choose to save the loans, the tool should prompt for a file path to save the file.
+                csvpath_str = questionary.text("Enter a file path (directory) to write the qualifying loans:").ask()
+                csvpath = Path(csvpath_str)
+                if not csvpath.exists():
+                    print(f"Oops! Can't find this path: {csvpath}, please try again.")
+                    is_got_valid_cli_response = False
+
+                else:
+                    is_got_valid_cli_response = True
+
+                    # Business requirement:
+                    #      Given that I’m using the loan qualifier CLI, when I run the qualifier, then the tool should prompt the user to save the results as a CSV file
+                    csvfile_str = questionary.text("Enter a filename to write the qualifying loans (.csv):").ask()
+                    csvpathfile_str = csvpath_str + "/" + csvfile_str
+                    csvpath = Path(csvpathfile_str)
+                    print("Saving qualifying loans to csv file: ", csvpath)
+
+                    save_csv(csvpath, qualifying_loans)
+                    
+            elif ((should_save_qualifying_loans == "no") or (should_save_qualifying_loans == "No") or (should_save_qualifying_loans == "NO")):
+                print("OK, will not save qualifying loan results to csv file.  Exiting!")
+                is_got_valid_cli_response = True
+
+            else:
+                print("Did not understand your response, please try again!")
+                # Will return to top of while loop since the default is_got_valid_cli_response is still False
+                
+        else:
+            # Business requirement: 
+            #   Given that no qualifying loans exist, when prompting a user to save a file, then the program should notify the user and exit.
+            print("Sorry, you do not have any qualifying loans.  Exiting!")
+            is_got_valid_cli_response = True
 
 def run():
     """The main function for running the script."""
