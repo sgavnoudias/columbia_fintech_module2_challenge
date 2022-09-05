@@ -91,4 +91,30 @@
   320  git add README.md
   321  git commit -m "Remove default commented text from README.md file"
   322  git push
-  323  history > terminal_history.txt
+  ........
+  334  git add README.md
+  335  git status
+  336  git commit -m "Update license required for Repo to GNU GENERAL PUBLIC LICENSE"
+  337  git log
+  338  git push
+  ........
+  342  vim .gitignore
+  343  less .gitignore
+  344  git add .gitignore
+  345  git status
+  346  git commit -m "Add .gitignore file as required by module requirements"
+  347  git push
+  348  clear;python app.py
+  349  clear;python app.py
+  350  clear;python app.py
+  351  clear;python app.py
+  352  clear;python app.py
+  353  ls -ltra data
+  354  ls -ltra data
+  355  clear;python app.py
+  356  git status
+  357  git diff app.py
+  358  git add app.py
+  359  git commit -m "Modify app.py to use questionary confirm.ask functions for yes/no user response"
+  360  git log
+  361  git push
